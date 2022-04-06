@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useMemo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Table from "./Table";
+import Table,{SelectColumnFilter} from "./Table";
 import axios from 'axios';
 import styled from 'styled-components'
 
@@ -59,7 +59,7 @@ export default function Users() {
     })();
   }, []);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
        
@@ -76,15 +76,21 @@ export default function Users() {
           },
           {
             Header: "Goal",
-            accessor: "goal"
+            accessor: "goal",
+            Filter: SelectColumnFilter,
+            filter: "includes",
           },
           {
             Header: "Preferred Music Genre",
-            accessor: "genre"
+            accessor: "genre",
+            Filter: SelectColumnFilter,
+            filter: "includes",
           },
           {
             Header: "Study Time Preference",
-            accessor: "studytime"
+            accessor: "studytime",
+            Filter: SelectColumnFilter,
+            filter: "includes",
           },
         ]
       },
