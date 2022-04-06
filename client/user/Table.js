@@ -215,11 +215,7 @@ const handleFilterChange = e => {
                 textAlign: 'left',
               }}
             >
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={state.globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
+        
             </th>
           </tr>
         </thead>
