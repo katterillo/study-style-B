@@ -15,6 +15,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -23,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     marginTop: theme.spacing(5),
     paddingBottom: theme.spacing(2)
+  },
+  span:{
+    pointerEvents: "none"
   },
   title: {
     margin: theme.spacing(2),
@@ -97,10 +103,14 @@ export default function EditProfile({ match }) {
       }
     })
   }
-  const handleChange = name => event => {
-    console.log(event.target.value);
+
+  const [alignment, setAlignment] = React.useState('web');
+
+  const handleChange = name => (event,newAlignment) => {
     console.log("Here");
-    setValues({...values, [name]: event.target.value})
+   
+    console.log(event.target.value);
+    setValues({...values, [name]: event.currentTarget.value})
   }
 
     if (values.redirectToProfile) {
@@ -115,25 +125,20 @@ export default function EditProfile({ match }) {
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">When do you prefer to study?</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={values.studytime}
-                label="StudyTime"
-                onChange={handleChange('studytime')}
-        >
-          <MenuItem value={"N/A"}>N/A</MenuItem>
-          <MenuItem value={"Morning"}>Morning</MenuItem>
-          <MenuItem value={"Afternoon"}>Afternoon</MenuItem>
-          <MenuItem value={"Evening"}>Evening</MenuItem>
-          <MenuItem value={"Night"}>Night</MenuItem>
-   
-        </Select>
-      </FormControl>
-      </Box>
+          <InputLabel id="demo-simple-select-label">When do you prefer to study?</InputLabel> 
+          <ToggleButtonGroup
+            value={values.studytime}
+            exclusive="true"
+            fullWidth="true"
+            onChange={handleChange('studytime')}
+           >
+      <ToggleButton value={"N/A"}> N/A</ToggleButton>
+      <ToggleButton value={"Morning"}>Morning</ToggleButton>
+      <ToggleButton value={"Afternoon"}>Afternoon</ToggleButton>
+      <ToggleButton value={"Evening"}>Evening</ToggleButton>
+      <ToggleButton value={"Night"}>Night</ToggleButton>
+    </ToggleButtonGroup>
+
       <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">What is your main goal?</InputLabel>
