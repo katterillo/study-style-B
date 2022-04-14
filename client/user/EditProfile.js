@@ -12,6 +12,7 @@ import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
 import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -108,9 +109,15 @@ export default function EditProfile({ match }) {
 
   const handleChange = name => (event,newAlignment) => {
     console.log("Here");
-   
     console.log(event.target.value);
-    setValues({...values, [name]: event.currentTarget.value})
+    console.log(event.currentTarget.value);
+    console.log(name);
+    if((name === "genre") || (name == "goal")){
+    setValues({...values, [name]: event.target.value})
+    }
+    else{
+      setValues({...values, [name]: event.currentTarget.value})
+    }
   }
 
     if (values.redirectToProfile) {
