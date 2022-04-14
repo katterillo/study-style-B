@@ -146,7 +146,7 @@ export default function EditProfile({ match }) {
       <ToggleButton value={"Night"}>Night</ToggleButton>
     </ToggleButtonGroup>
 
-      <Box sx={{ minWidth: 120 }}>
+      <Box sx={{  minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">What is your main goal?</InputLabel>
               <Select
@@ -156,18 +156,22 @@ export default function EditProfile({ match }) {
                 label="goal"
                 onChange={handleChange('goal')}
         >
+         
           <MenuItem value={"N/A"}>N/A</MenuItem>
+          <ListSubheader>School</ListSubheader>
           <MenuItem value={"Improve my grades"}>Improve my grades</MenuItem>
           <MenuItem value={"Build good study habits"}>Build good study habits</MenuItem>
           <MenuItem value={"Complete my homework"}>Complete my homework</MenuItem>
+          <ListSubheader>Concentration</ListSubheader>
           <MenuItem value={"Stay focused for longer periods"}>Stay focused for longer periods</MenuItem>
           <MenuItem value={"Share resources"}>Share resources</MenuItem>
-          <MenuItem value={"Find similar users"}>Find similar users</MenuItem>
           <MenuItem value={"Be more motivated to study"}>Be more motivated to study</MenuItem>
+          <ListSubheader>Group</ListSubheader>
+          <MenuItem value={"Find similar users"}>Find similar users</MenuItem>
         </Select>
       </FormControl>
     </Box>
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ m: 1,minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">What genre of music do you most like to listen to while studying?</InputLabel>
               <Select
@@ -175,20 +179,37 @@ export default function EditProfile({ match }) {
                 id="demo-simple-select"
                 value={values.genre}
                 label="genre"
-                onChange={handleChange('genre')}
+                onChange={handleChange('genre')}   
         >
           <MenuItem value={"N/A"}>N/A</MenuItem>
-          <MenuItem value={"country"}>country</MenuItem>
-          <MenuItem value={"pop"}>pop</MenuItem>
-          <MenuItem value={"rap"}>rap</MenuItem>
-          <MenuItem value={"classical"}>classical</MenuItem>
-          <MenuItem value={"hip hop"}>hip hop</MenuItem>
-          <MenuItem value={"metal"}>metal</MenuItem>
-          <MenuItem value={"rock"}>rock</MenuItem>
-          <MenuItem value={"edm"}>edm</MenuItem>
-          <MenuItem value={"punk"}>punk</MenuItem>
-          <MenuItem value={"dance"}>dance</MenuItem>
-          <MenuItem value={"alternative"}>alternative</MenuItem>
+          <ListSubheader disableSticky={true}>Classical</ListSubheader>
+          <MenuItem value={"orchestral"}>orchestral</MenuItem>
+          <MenuItem value={"symphony"}>symphony</MenuItem>
+          <MenuItem value={"choral"}>choral</MenuItem>
+          <MenuItem value={"opera"}>opera</MenuItem>
+          <ListSubheader disableSticky={true}>EDM</ListSubheader>
+          <MenuItem value={"happy hardcore"}>happy hardcore</MenuItem>
+          <MenuItem value={"house"}>house</MenuItem>
+          <MenuItem value={"dubstep"}>dubstep</MenuItem>
+          <MenuItem value={"drum and bass"}>drum and bass</MenuItem>
+          <MenuItem value={"hardstyle"}>hardstyle</MenuItem>
+          <MenuItem value={"speedcore"}>speedcore</MenuItem>
+          <ListSubheader disableSticky={true}>Country</ListSubheader>
+          <MenuItem value={"bluegrass"}>bluegrass</MenuItem>
+          <MenuItem value={"country pop"}>country pop</MenuItem>
+          <MenuItem value={"bakersfield sound"}>bakersfield sound</MenuItem>
+          <ListSubheader disableSticky={true}>Pop</ListSubheader>
+          <MenuItem value={"baroque pop"}>baroque pop</MenuItem>
+          <MenuItem value={"pop rock"}>pop rock</MenuItem>
+          <MenuItem value={"electropop"}>electropop</MenuItem>
+          <MenuItem value={"emo pop"}>emo pop</MenuItem>
+          <MenuItem value={"indie pop"}>indie pop</MenuItem>
+          <ListSubheader disableSticky={true}>Rap</ListSubheader>
+          <MenuItem value={"jazz rap"}>jazz rap</MenuItem>
+          <MenuItem value={"trap"}>trap</MenuItem>
+          <MenuItem value={"country trap"}>country trap</MenuItem>
+          <MenuItem value={"old school"}>old school</MenuItem>
+          <ListSubheader disableSticky={true}>Other</ListSubheader>
           <MenuItem value={"lo-fi"}>lo-fi</MenuItem>
 
         </Select>
