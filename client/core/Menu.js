@@ -6,8 +6,11 @@ import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 import auth from './../auth/auth-helper'
+import PomTimer from '../Pomodoro/PomTimer'
 import {Link, withRouter} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
@@ -32,11 +35,9 @@ const Menu = withRouter(({history}) => (
       <Link to="/calendar">
             <Button style={isActive(history, "/calendar")}>Calendar</Button>
           </Link>
-          <Link to="/pomodoro">
-            <Button style={isActive(history, "/pomodoro")}>Pomodoro</Button>
-          </Link>
+        
       {
-        !auth.isAuthenticated() && (<span>
+        !auth.isAuthenticated() && (<div><div>
           <Link to="/signup">
             <Button style={isActive(history, "/signup")}>Sign up
             </Button>
@@ -45,12 +46,15 @@ const Menu = withRouter(({history}) => (
             <Button style={isActive(history, "/signin")}>Sign In
             </Button>
           </Link>
+          </div>
+          <div>
           <Link to="/search">
             <IconButton aria-label="Search" style={isActive(history, "/search")}>
               <SearchIcon/>
             </IconButton>
           </Link>
-        </span>)
+        </div>
+        </div>)
       }
       {
         auth.isAuthenticated() && (<span>
@@ -62,6 +66,9 @@ const Menu = withRouter(({history}) => (
             }}>Sign out</Button>
         </span>)
       }
+    <Grid container justifyContent="flex-end">
+          <PomTimer />
+    </Grid>
     </Toolbar>
   </AppBar>
 ))

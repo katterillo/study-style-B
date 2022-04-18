@@ -24,7 +24,6 @@ const MainRouter = () => {
         <PrivateRoute path="/userprofile/edit/:userId" component={EditProfile}/>
         <Route path="/userprofile/:userId" component={Profile}/>
         <Route path="/calendar" component={CalendarPage}/>
-        <Route path="/pomodoro" component={PomTimer}/>
         <Route path="/search" component={Search}/>
       </Switch>
     </div>)
