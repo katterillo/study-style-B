@@ -18,7 +18,6 @@ import Table from "./Table-Calendar";
 import axios from 'axios';
 import styled from 'styled-components'
 
-
 const Styles = styled.div`
   padding: 1rem;
 
@@ -106,6 +105,8 @@ const useStyles = makeStyles(theme => ({
         margin: 10   
     }
 }))
+
+var currentEvents = [];
 
 export default function CalendarPage() {
     //for react table
@@ -195,7 +196,9 @@ export default function CalendarPage() {
             location: values.location || undefined,
             remote: values.remote || undefined
           }
-          
+
+          currentEvents.push(calendar)
+
           create(calendar).then((data) => {
             console.log("inside clicksubmit, data: " + data);
             if (data.error) {
@@ -204,12 +207,28 @@ export default function CalendarPage() {
               setValues({ ...values, error: '', open: true})
             }
           })
+
+          /* I am not too familiar with the code but in order to avoid needing to refresh the page
+            need a call to update the data variable from backend here */
         }
 
  
     const handleChange = name => event => {
         let value = '';
         console.log(event);
+
+        if (name === 'date') {
+          currentEvents = [];
+          
+          for (let i = 0; i < data.length; i++) {
+            var tempDate = new Date(data[i].date);
+            if (tempDate.toDateString() === event.toDateString())
+              currentEvents.push(data[i]);
+              
+          }
+         
+        }
+
         if (name === 'date' || name === 'time') { 
                 value = event 
             } 
@@ -362,12 +381,24 @@ export default function CalendarPage() {
                 <Typography variant="h6" className={classes.title} align="center">
                     Study Events
                 </Typography>
-                <Styles>
-      <Table columns={columns} data={data} />
-      </Styles>
+                
+                <Grid justifyContent="center" justify="center" spacing={50}>
+                {currentEvents.map(function(currentEvents) {
+                  return (
+                    <Grid item>
+                    <Typography variant="h6" className={classes.title} align="center">
+                      {currentEvents.eventName}
+                      </Typography>
+                      <Typography variant="h7" className={classes.title} align="center">Location: {currentEvents.location}</Typography>
+                      <Typography variant="h7" className={classes.title} align="center">Description: {currentEvents.description}</Typography>
+                    </Grid>
+                  )
+                })}
+                </Grid>
                 </Card>
       
             </Grid>
         </Grid>
     )
 };
+
