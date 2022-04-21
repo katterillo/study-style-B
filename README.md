@@ -1,7 +1,5 @@
 # study-style-B
 
-# study-style
-
 How to run locally from GitHub in terminal (first time)
 
 Type “mkdir study-style-b” to create a new folder
